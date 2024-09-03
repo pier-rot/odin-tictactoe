@@ -142,7 +142,7 @@ function GameController(...players) {
 
         if (board.isColumnFilledWithValue(getActivePlayer().getID()) || board.isRowFilledWithValue(getActivePlayer().getID()) || board.isDiagonalFilledWithValue(getActivePlayer().getID())) {
             winner = getActivePlayer();
-            console.log(`${getActivePlayer().getUserName()} has won!!`)
+            console.log(`${winner.getUserName()} has won!!`)
         } else if (board.isBoardFull()) {
             console.log("The board is full and no one won!");
         } else {
