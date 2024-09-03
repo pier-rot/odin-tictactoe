@@ -199,7 +199,10 @@ function ScreenController() {
     }
 
     function handleCellClick(e) {
-        console.log(`${e.currentTarget.dataset.row +","+ e.currentTarget.dataset.col} is my position.`)
+        const targetRow = e.currentTarget.dataset.row;
+        const targetCol = e.currentTarget.dataset.col;
+        console.log(`${targetRow +","+ targetCol} is my position.`)
+        game.playRound(Number(targetRow), Number(targetCol));
     }
     
 }
