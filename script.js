@@ -58,7 +58,11 @@ function Gameboard(boardSize = 3) {
 }
 
 function GameController(...players) {
+    const board = Gameboard();
     const playerCount = players.length;
+    if (playerCount === 0) {
+        players = [Player("Player", "x",1), Player("Player", "o", 2)];
+    }
     const getPlayersNames = () => players.map((player) => player.getUserName());
     let activePlayerIndex = 0;
     let getActivePlayer = () => players[activePlayerIndex];
@@ -70,5 +74,25 @@ function GameController(...players) {
             activePlayerIndex++;
         }
     };
+
+    const printNewRound = () => {
+        board.printBoard();
+        console.log(`${getActivePlayer().getUserName()}'s turn ...`)
+    };
+
+
+    const playRound = (row,column) => {
+        console.log(`Putting ${getActivePlayer().getUserName()}'s token (${getActivePlayer().getToken()}) at (${(row + "," + column)}).`);
+        board.putPlayerAt(getActivePlayer(), row, column);
+        nextPlayerTurn();
+        printNewRound();
+    }
+    printNewRound();
+
+    return {
+        getActivePlayer,
+        playRound,
+        getPlayersNames,
+    }
     
 }
