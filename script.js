@@ -139,27 +139,20 @@ function GameController(...players) {
 
     const playRound = (row,column) => {
         if (!isGameOver) {
-            console.log(`Putting ${getActivePlayer().getUserName()}'s token (${getActivePlayer().getToken()}) at (${(row + "," + column)}).`);
             board.putPlayerAt(getActivePlayer(), row, column);
 
             if (board.isColumnFilledWithValue(getActivePlayer().getID()) || board.isRowFilledWithValue(getActivePlayer().getID()) || board.isDiagonalFilledWithValue(getActivePlayer().getID())) {
                 winner = getActivePlayer();
                 isGameOver = true;
-                console.log(`${winner.getUserName()} has won!!`)
             } else if (board.isBoardFull()) {
-                console.log("The board is full and no one won!");
                 isGameOver = true;
             } else {
                 nextPlayerTurn();
-                printNewRound();
             }
-        } else {
-            console.log("Game is over.");
         }
 
         
     }
-    printNewRound();
 
     const getIsGameOver = () => isGameOver;
     const getWinner = () => winner;
@@ -210,7 +203,6 @@ function ScreenController() {
         const targetCell = e.currentTarget;
         const targetRow = targetCell.dataset.row;
         const targetCol = targetCell.dataset.col;
-        console.log(`${targetRow +","+ targetCol} is my position.`);
         if (!game.getIsGameOver()) {
             targetCell.innerText = `${game.getActivePlayer().getToken()}`;
             game.playRound(Number(targetRow), Number(targetCol));
