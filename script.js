@@ -165,6 +165,7 @@ function GameController(...players) {
         getActivePlayer,
         playRound,
         getPlayersNames,
+        getBoard: board.getBoard
     }
     
 }
@@ -174,6 +175,7 @@ function ScreenController() {
     const boardDiv = document.querySelector("div.board");
     const pTurn = document.querySelector("p.turn");
     const pResult = document.querySelector("p.result");
+    const board = game.getBoard();
 
     const updateScreen = () => {};
 }
