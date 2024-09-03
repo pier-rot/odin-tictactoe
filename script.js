@@ -12,9 +12,9 @@ function Cell() {
 function Player(name, token, ID) {
     const userName = name + ID;
 
-    const getToken = () => {token;}
-    const getID = () => {ID;}
-    const getUserName = () => {userName;};
+    const getToken = () => token;
+    const getID = () => ID;
+    const getUserName = () => userName;
     return {
         getUserName,
         getToken,
@@ -36,18 +36,18 @@ function Gameboard() {
         }
     }
 
-    const getBoard = () => {board;};
+    const getBoard = () => board;
 
     const putPlayerAt = (player, row, column) => {
-        if (board[row][column] === 0) {
-            board[row][column] = player.getID();
+        if (board[row][column].getValue() === 0) {
+            board[row][column].setValueFromPlayer(player);
         } else {
             return;
         }
     };
 
     const printBoard = () => {
-        console.log(getBoard());
+        console.log(getBoard().map((row) => row.map((cell) => cell.getValue())));
     };
 
     return {
