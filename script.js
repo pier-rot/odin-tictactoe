@@ -186,5 +186,20 @@ function ScreenController() {
     };
 
     // Make all the divs in the board
+    for(let i = 0; i < boardSize; i++) {
+        for(let j = 0; j < boardSize; j++) {
+            const cellDiv = document.createElement("div");
+            cellDiv.classList.add("cell");
+            cellDiv.dataset.row = i;
+            cellDiv.dataset.col = j;
+            cellDiv.addEventListener("click", handleCellClick);
+            cellDiv.innerText = `${i + "," + j}`;
+            boardDiv.appendChild(cellDiv);
+        }
+    }
+
+    function handleCellClick(e) {
+        console.log(`${e.currentTarget.dataset.row +","+ e.currentTarget.dataset.col} is my position.`)
+    }
     
 }
