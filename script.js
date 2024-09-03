@@ -24,7 +24,7 @@ function Player(name, token, ID) {
 
 }
 
-function Gameboard(boardSize) {
+function Gameboard(boardSize = 3) {
     let rows = boardSize;
     let columns = boardSize;
     let board = [];
