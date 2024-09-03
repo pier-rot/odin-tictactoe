@@ -56,3 +56,19 @@ function Gameboard() {
         printBoard
     }
 }
+
+function GameController(...players) {
+    const playerCount = players.length;
+    const getPlayersNames = () => players.map((player) => player.getUserName());
+    let activePlayerIndex = 0;
+    let getActivePlayer = () => players[activePlayerIndex];
+
+    const nextPlayerTurn = () => {
+        if (activePlayerIndex === playerCount - 1) {
+            activePlayerIndex = 0;
+        } else {
+            activePlayerIndex++;
+        }
+    };
+    
+}
