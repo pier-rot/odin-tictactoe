@@ -113,6 +113,7 @@ function Gameboard(boardSize = 3) {
 
 function GameController(...players) {
     const board = Gameboard();
+    let isGameOver = false;
     let winner = null;
     if (players.length === 0) {
         players = [Player("Player", "x",1), Player("Player", "o", 2)];
@@ -137,17 +138,23 @@ function GameController(...players) {
 
 
     const playRound = (row,column) => {
-        console.log(`Putting ${getActivePlayer().getUserName()}'s token (${getActivePlayer().getToken()}) at (${(row + "," + column)}).`);
-        board.putPlayerAt(getActivePlayer(), row, column);
+        if (!isGameOver) {
+            console.log(`Putting ${getActivePlayer().getUserName()}'s token (${getActivePlayer().getToken()}) at (${(row + "," + column)}).`);
+            board.putPlayerAt(getActivePlayer(), row, column);
 
-        if (board.isColumnFilledWithValue(getActivePlayer().getID()) || board.isRowFilledWithValue(getActivePlayer().getID()) || board.isDiagonalFilledWithValue(getActivePlayer().getID())) {
-            winner = getActivePlayer();
-            console.log(`${winner.getUserName()} has won!!`)
-        } else if (board.isBoardFull()) {
-            console.log("The board is full and no one won!");
+            if (board.isColumnFilledWithValue(getActivePlayer().getID()) || board.isRowFilledWithValue(getActivePlayer().getID()) || board.isDiagonalFilledWithValue(getActivePlayer().getID())) {
+                winner = getActivePlayer();
+                isGameOver = true;
+                console.log(`${winner.getUserName()} has won!!`)
+            } else if (board.isBoardFull()) {
+                console.log("The board is full and no one won!");
+                isGameOver = true;
+            } else {
+                nextPlayerTurn();
+                printNewRound();
+            }
         } else {
-            nextPlayerTurn();
-            printNewRound();
+            console.log("Game is over.");
         }
 
         
