@@ -193,15 +193,17 @@ function ScreenController() {
             cellDiv.dataset.row = i;
             cellDiv.dataset.col = j;
             cellDiv.addEventListener("click", handleCellClick);
-            cellDiv.innerText = `${i + "," + j}`;
+            cellDiv.innerText = ` `;
             boardDiv.appendChild(cellDiv);
         }
     }
 
     function handleCellClick(e) {
-        const targetRow = e.currentTarget.dataset.row;
-        const targetCol = e.currentTarget.dataset.col;
+        const targetCell = e.currentTarget;
+        const targetRow = targetCell.dataset.row;
+        const targetCol = targetCell.dataset.col;
         console.log(`${targetRow +","+ targetCol} is my position.`)
+        targetCell.innerText = `${game.getActivePlayer().getToken()}`;
         game.playRound(Number(targetRow), Number(targetCol));
     }
     
