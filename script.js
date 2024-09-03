@@ -100,10 +100,6 @@ function Gameboard(boardSize = 3) {
         return true;
     }
 
-    const getBoardSize = () => {
-        return boardSize;
-    };
-
     return {
         getBoard,
         putPlayerAt,
@@ -111,8 +107,7 @@ function Gameboard(boardSize = 3) {
         isRowFilledWithValue,
         isColumnFilledWithValue,
         isDiagonalFilledWithValue,
-        isBoardFull,
-        getBoardSize
+        isBoardFull
     }
 }
 
@@ -180,6 +175,7 @@ function ScreenController() {
     const boardDiv = document.querySelector("div.board");
     const pTurn = document.querySelector("p.turn");
     const pResult = document.querySelector("p.result");
+    const boardSize = game.getBoard().length;
     
     const updateScreen = () => {
         boardDiv.textContent = "";
