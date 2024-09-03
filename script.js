@@ -24,9 +24,9 @@ function Player(name, token, ID) {
 
 }
 
-function Gameboard() {
-    let rows = 3;
-    let columns = 3;
+function Gameboard(boardSize) {
+    let rows = boardSize;
+    let columns = boardSize;
     let board = [];
 
     for(let i = 0; i<rows; i++){
