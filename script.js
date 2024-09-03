@@ -178,8 +178,6 @@ function ScreenController() {
     const boardSize = game.getBoard().length;
     
     const updateScreen = () => {
-        boardDiv.textContent = "";
-        const board = game.getBoard();
         const activePlayer = game.getActivePlayer();
 
         pTurn.textContent = `${activePlayer.getUserName()}`;
@@ -197,7 +195,8 @@ function ScreenController() {
             boardDiv.appendChild(cellDiv);
         }
     }
-
+    updateScreen();
+    
     function handleCellClick(e) {
         const targetCell = e.currentTarget;
         const targetRow = targetCell.dataset.row;
@@ -205,6 +204,7 @@ function ScreenController() {
         console.log(`${targetRow +","+ targetCol} is my position.`)
         targetCell.innerText = `${game.getActivePlayer().getToken()}`;
         game.playRound(Number(targetRow), Number(targetCol));
+        updateScreen();
     }
     
 }
