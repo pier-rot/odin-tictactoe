@@ -74,7 +74,7 @@ main {
     gap: 1rem;
 }
 
-.board, .cell, .turn-container, .result-container {
+.board, .cell {
     border: solid black 2px;
 }
 
@@ -94,4 +94,15 @@ main {
     justify-content: center;
     align-items: center;
     font-size: 3rem;
+}
+
+.turn-container, .result-container {
+    margin: 0 2rem;
+    border: solid black 3px;
+    padding: 0.25rem;
+    /* border-radius: 0.5rem; */
+}
+
+p {
+    font-size: 1.25rem;
 }
