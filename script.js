@@ -101,10 +101,11 @@ function Gameboard(boardSize = 3) {
 
 function GameController(...players) {
     const board = Gameboard();
-    const playerCount = players.length;
-    if (playerCount === 0) {
+    let winner = null;
+    if (players.length === 0) {
         players = [Player("Player", "x",1), Player("Player", "o", 2)];
     }
+    const playerCount = players.length;
     const getPlayersNames = () => players.map((player) => player.getUserName());
     let activePlayerIndex = 0;
     let getActivePlayer = () => players[activePlayerIndex];
@@ -126,8 +127,15 @@ function GameController(...players) {
     const playRound = (row,column) => {
         console.log(`Putting ${getActivePlayer().getUserName()}'s token (${getActivePlayer().getToken()}) at (${(row + "," + column)}).`);
         board.putPlayerAt(getActivePlayer(), row, column);
-        nextPlayerTurn();
-        printNewRound();
+
+        if (board.isColumnFilledWithValue(getActivePlayer().getID()) || board.isRowFilledWithValue(getActivePlayer().getID()) || board.isDiagonalFilledWithValue(getActivePlayer().getID())) {
+            console.log(`${getActivePlayer().getUserName()} has won!!`)
+        } else {
+            nextPlayerTurn();
+            printNewRound();
+        }
+
+        
     }
     printNewRound();
 
