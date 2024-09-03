@@ -10,11 +10,13 @@ function Cell() {
 }
 
 function Player(name, token, ID) {
+    const userName = name + ID;
 
     const getToken = () => {token;}
     const getID = () => {ID;}
+    const getUserName = () => {userName;};
     return {
-        name,
+        getUserName,
         getToken,
         getID
     }
