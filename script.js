@@ -168,3 +168,12 @@ function GameController(...players) {
     }
     
 }
+
+function ScreenController() {
+    const game = GameController();
+    const boardDiv = document.querySelector("div.board");
+    const pTurn = document.querySelector("p.turn");
+    const pResult = document.querySelector("p.result");
+
+    const updateScreen = () => {};
+}
