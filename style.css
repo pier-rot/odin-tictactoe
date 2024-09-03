@@ -67,16 +67,31 @@ body {
 }
 
 main {
-    width: 50%;
-    height: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: stretch;
     text-align: center;
     gap: 1rem;
 }
 
-.board, .turn-container, .result-container {
+.board, .cell, .turn-container, .result-container {
     border: solid black 2px;
+}
+
+.board {
+    width: min(50vh, 50vw);
+    height: min(50vh, 50vw);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-auto-flow: row dense;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr;
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
 }
