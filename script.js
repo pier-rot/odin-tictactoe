@@ -175,7 +175,18 @@ function ScreenController() {
     const boardDiv = document.querySelector("div.board");
     const pTurn = document.querySelector("p.turn");
     const pResult = document.querySelector("p.result");
-    const board = game.getBoard();
+    
+    const updateScreen = () => {
+        boardDiv.textContent = "";
+        const board = game.getBoard();
+        const activePlayer = game.getActivePlayer();
 
-    const updateScreen = () => {};
+        pTurn.textContent = `${activePlayer.getUserName()}`;
+    };
+
+    // Make all the divs in the board
+    board.forEach((row) => {
+        row.forEach((elem)=> {})
+        
+    });
 }
