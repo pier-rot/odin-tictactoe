@@ -53,7 +53,21 @@ function Gameboard(boardSize = 3) {
     const isRowFilledWithValue = (value) => {
         
         for(let i = 0; i < rows; i++) {
-            if (board[i].filter((val) => val.getValue() === value).length === boardSize) {
+            if (board[i].every((val) => val.getValue() === value)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    const isColumnFilledWithValue = (value) => {
+        for(let j = 0; j<columns;j++) {
+            col = [];
+            for(let i = 0; i<rows;i++) {
+                col.push(board[i][j]);
+            }
+
+            if (col.every((val) => val.getValue() === value)) {
                 return true;
             }
         }
@@ -64,7 +78,9 @@ function Gameboard(boardSize = 3) {
         getBoard,
         putPlayerAt,
         printBoard,
-        isRowFilledWithValue
+        isRowFilledWithValue,
+        isColumnFilledWithValue,
+        // isDiagonalFilledWithValue
     }
 }
 
