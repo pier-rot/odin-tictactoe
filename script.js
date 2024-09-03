@@ -58,7 +58,7 @@ function Gameboard(boardSize = 3) {
             }
         }
         return false;
-    }
+    };
 
     const isColumnFilledWithValue = (value) => {
         for(let j = 0; j<columns;j++) {
@@ -72,7 +72,22 @@ function Gameboard(boardSize = 3) {
             }
         }
         return false;
-    }
+    };
+
+    const isDiagonalFilledWithValue = (value) => {
+        let diag1 = [];
+        let diag2 = [];
+
+        for(let i = 0; i < boardSize; i++) {
+            diag1.push(board[i][i]);
+            diag2.push(board[i][boardSize - 1 - i]);
+        }
+
+        if (diag1.every((val) => val.getValue() === value) || diag2.every((val) => val.getValue()===value)) {
+            return true;
+        }
+        return false;
+    };
 
     return {
         getBoard,
@@ -80,7 +95,7 @@ function Gameboard(boardSize = 3) {
         printBoard,
         isRowFilledWithValue,
         isColumnFilledWithValue,
-        // isDiagonalFilledWithValue
+        isDiagonalFilledWithValue
     }
 }
 
