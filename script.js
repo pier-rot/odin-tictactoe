@@ -211,3 +211,4 @@ function ScreenController() {
     }
     
 }
+let s = ScreenController();
