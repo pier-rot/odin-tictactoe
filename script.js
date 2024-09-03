@@ -161,11 +161,16 @@ function GameController(...players) {
     }
     printNewRound();
 
+    const getIsGameOver = () => isGameOver;
+    const getWinner = () => winner;
+    
     return {
         getActivePlayer,
         playRound,
         getPlayersNames,
-        getBoard: board.getBoard
+        getBoard: board.getBoard,
+        getIsGameOver,
+        getWinner
     }
     
 }
@@ -181,6 +186,10 @@ function ScreenController() {
         const activePlayer = game.getActivePlayer();
 
         pTurn.textContent = `${activePlayer.getUserName()}`;
+
+        if (game.getIsGameOver()) {
+            pResult.textContent = (!game.getWinner()) ? "Tie!" : `${game.getWinner().getUserName()} won!`;
+        }
     };
 
     // Make all the divs in the board
@@ -196,15 +205,17 @@ function ScreenController() {
         }
     }
     updateScreen();
-    
+
     function handleCellClick(e) {
         const targetCell = e.currentTarget;
         const targetRow = targetCell.dataset.row;
         const targetCol = targetCell.dataset.col;
-        console.log(`${targetRow +","+ targetCol} is my position.`)
-        targetCell.innerText = `${game.getActivePlayer().getToken()}`;
-        game.playRound(Number(targetRow), Number(targetCol));
-        updateScreen();
+        console.log(`${targetRow +","+ targetCol} is my position.`);
+        if (!game.getIsGameOver()) {
+            targetCell.innerText = `${game.getActivePlayer().getToken()}`;
+            game.playRound(Number(targetRow), Number(targetCol));
+            updateScreen();
+        }
     }
     
 }
