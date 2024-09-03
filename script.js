@@ -89,13 +89,25 @@ function Gameboard(boardSize = 3) {
         return false;
     };
 
+    const isBoardFull = () => {
+        for(let i = 0; i <boardSize; i++) {
+            for(let j=0; j<boardSize; j++) {
+                if (board[i][j].getValue() === 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     return {
         getBoard,
         putPlayerAt,
         printBoard,
         isRowFilledWithValue,
         isColumnFilledWithValue,
-        isDiagonalFilledWithValue
+        isDiagonalFilledWithValue,
+        isBoardFull
     }
 }
 
@@ -129,7 +141,10 @@ function GameController(...players) {
         board.putPlayerAt(getActivePlayer(), row, column);
 
         if (board.isColumnFilledWithValue(getActivePlayer().getID()) || board.isRowFilledWithValue(getActivePlayer().getID()) || board.isDiagonalFilledWithValue(getActivePlayer().getID())) {
+            winner = getActivePlayer();
             console.log(`${getActivePlayer().getUserName()} has won!!`)
+        } else if (board.isBoardFull()) {
+            console.log("The board is full and no one won!");
         } else {
             nextPlayerTurn();
             printNewRound();
