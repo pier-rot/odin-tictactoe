@@ -50,10 +50,21 @@ function Gameboard(boardSize = 3) {
         console.log(getBoard().map((row) => row.map((cell) => cell.getValue())));
     };
 
+    const isRowFilledWithValue = (value) => {
+        
+        for(let i = 0; i < rows; i++) {
+            if (board[i].filter((val) => val.getValue() === value).length === boardSize) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     return {
         getBoard,
         putPlayerAt,
-        printBoard
+        printBoard,
+        isRowFilledWithValue
     }
 }
 
